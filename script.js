@@ -174,9 +174,11 @@ input.addEventListener('change', () => {
           
               //Chart background
               var gradientBack = canvas.getContext("2d").createLinearGradient(0, 0, 0, 255);
-              gradientBack.addColorStop(0, "rgba(255, 0, 0, 0.3)");
-              gradientBack.addColorStop(1, "rgba(255, 255, 255, 0)");
-              gradientBack.addColorStop(0, "rgba(255, 0, 0, 0.3)");
+              gradientBack.addColorStop(0.5, "rgba(192, 57, 43, 0.6)");             
+              gradientBack.addColorStop(0.7, "rgba(255, 255, 255, 0)");
+              gradientBack.addColorStop(0.7, "rgba(255, 255, 255, 0)");
+              gradientBack.addColorStop(1, "rgba(192, 57, 43, 0.6)");
+
           
               ctx.fillStyle = gradientBack;
               ctx.fillRect(chartArea.left, chartArea.bottom,
@@ -320,6 +322,7 @@ input.addEventListener('change', () => {
 
     reader.readAsText(file);
 
+
     function makeGraph(array) {
 
         var ax = [getCol(array, 0), getCol(array, 4), getCol(array, 5)];
@@ -344,6 +347,8 @@ input.addEventListener('change', () => {
                 tension: 0.1
             }]
         };
+
+        
 
         const config = {
             type: 'line',
