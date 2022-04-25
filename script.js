@@ -352,9 +352,6 @@ input.addEventListener('change', () => {
 
         var ctx = document.getElementById('myChart2').getContext('2d');
         var myChart = new Chart(ctx, config);
-
-
-
     }
 
 });
