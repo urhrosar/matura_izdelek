@@ -118,6 +118,29 @@ input.addEventListener('change', () => {
 
     function makeGraph(array) {
 
+        Chart.plugins.register({
+            afterDatasetsDraw: function (chart) {
+            if (chart.tooltip._active && chart.tooltip._active.length) {
+            var activePoint = chart.tooltip._active[0],
+            ctx = chart.ctx,
+            y_axis = chart.scales['y-axis-0'],
+            x = activePoint.tooltipPosition().x,
+            topY = y_axis.top,
+            bottomY = y_axis.bottom;
+            // draw line
+            ctx.save();
+            ctx.beginPath();
+            ctx.moveTo(x, topY);
+            ctx.lineTo(x, bottomY);
+            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = '#34495e';
+            ctx.stroke();
+            ctx.restore();
+            }
+            }
+            }
+            );
+
         var ax = [getCol(array, 0), getCol(array, 1), getCol(array, 2)];
         console.log(ax);
 
@@ -139,11 +162,32 @@ input.addEventListener('change', () => {
                 borderColor: 'rgb(75, 76, 192)',
                 tension: 0.1
             }]
+
+            
         };
 
+        var GradientBgPlugin = {
+            beforeDraw: function(chartInstance) {
+              const ctx = chartInstance.chart.ctx;
+              const canvas = chartInstance.chart.canvas;
+              const chartArea = chartInstance.chartArea;
+          
+              //Chart background
+              var gradientBack = canvas.getContext("2d").createLinearGradient(0, 0, 0, 255);
+              gradientBack.addColorStop(0, "rgba(255, 0, 0, 0.3)");
+              gradientBack.addColorStop(1, "rgba(255, 255, 255, 0)");
+              gradientBack.addColorStop(0, "rgba(255, 0, 0, 0.3)");
+          
+              ctx.fillStyle = gradientBack;
+              ctx.fillRect(chartArea.left, chartArea.bottom,
+                chartArea.right - chartArea.left, chartArea.top - chartArea.bottom);
+            }
+          };
+        
         const config = {
             type: 'line',
             data: data,
+            plugins: [GradientBgPlugin],
             };
 
         var ctx = document.getElementById('myChart').getContext('2d');
