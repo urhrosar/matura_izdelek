@@ -79,40 +79,55 @@
           <div class=""></div>
         </div>
       </div>
-      <div class="mb-4 bg-light rounded-3">
-        <div class="container-fluid py-5">
-          <h1 class="display-5 fw-bold">Welcome</h1>
+      <div class="container">
+        <header class="d-flex justify-content-center py-3">
+          <ul class="nav nav-pills">
+            <li class="nav-item"><a href="index.html" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="angle.html" class="nav-link">Angle</a></li>
+            <li class="nav-item"><a href="acceleration.html" class="nav-link">Acceleration</a></li>
+            <li class="nav-item"><a href="data.html" class="nav-link">Data</a></li>
+          </ul>
+        </header>
+      </div>
+
+      <h1 class="display-5 fw-bold">Angle</h1>
+
+      <p style="margin: 10px; margin-bottom: 10px;">First select a file to plot the graph.</p>
+      <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+          <input type="file" class="form-control" id="customFile" />
         </div>
       </div>
 
-      <div class="row align-items-md-stretch">
-        <div class="col-md-6">
-          <div class="h-100 p-5 text-white bg-dark rounded-3">
-            <h2>Angle</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <a class="btn btn-outline-light" href="angle.html" role="button">Show</a>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="h-100 p-5 bg-light border rounded-3">
-            <h2>Acceleration</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <a class="btn btn-outline-secondary" href="acceleration.html" role="button">Show</a>
-          </div>
-        </div>
-        <div class="col-md-6" style="width: 100%; margin-top: 3%; text-align: center;">
-          <div class="h-100 p-5 bg-light border rounded-3">
-            <h2>Data</h2>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-            <a class="btn btn-outline-secondary" href="data.html" role="button">Show</a>
-          </div>
+      <button onclick="download()" class="btn btn-sm btn-outline-secondary" style="margin: 5%;">Export graph as
+        png</button>
+      <script>
+        function download() {
+          const imageLink = document.createElement('a');
+          const canvas = document.getElementById('myChart');
+          imageLink.download = 'canvas.png';
+          imageLink.href = canvas.toDataURL('image/png', 1.0);
+          imageLink.click();
+        }
+      </script>
+      <canvas id="myChart"></canvas>
+
+      <div hidden>
+        <p style="margin-top: 3%;">The data are sorted in the following order:</p>
+        <p>|row| |ax| |ay| |az| |gx| |gy|</p>
+        <div>
+          <!--<input type="file">-->
+          <textarea cols="165" rows="15" style="width: -webkit-fill-available;"></textarea>
         </div>
       </div>
 
-      <div id="footer"></div>
+    </main>
+  </div>
 
-      <script src="script.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <div id="footer"></div>
+
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
 </body>
 
