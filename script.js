@@ -173,11 +173,11 @@ input.addEventListener('change', () => {
               const chartArea = chartInstance.chartArea;
           
               //Chart background
-              var gradientBack = canvas.getContext("2d").createLinearGradient(0, 0, 0, 255);
-              gradientBack.addColorStop(0.5, "rgba(192, 57, 43, 0.6)");             
-              gradientBack.addColorStop(0.7, "rgba(255, 255, 255, 0)");
-              gradientBack.addColorStop(0.7, "rgba(255, 255, 255, 0)");
-              gradientBack.addColorStop(1, "rgba(192, 57, 43, 0.6)");
+              var gradientBack = canvas.getContext("2d").createLinearGradient(0, 0, 0, 455);
+              gradientBack.addColorStop(0.45, "rgba(192, 57, 43, 0.6)");             
+              gradientBack.addColorStop(0.55, "rgba(255, 255, 255, 0)");
+              gradientBack.addColorStop(0.8, "rgba(255, 255, 255, 0)");
+              gradientBack.addColorStop(0.9, "rgba(192, 57, 43, 0.6)");
 
           
               ctx.fillStyle = gradientBack;
