@@ -208,10 +208,10 @@ input.addEventListener('change', () => {
                   if (line.y) {
                     yValue = yScale.getPixelForValue(line.y);
                   } else {
-                    yValue = 1500;
+                    yValue = 10;
                   }
           
-                  ctx.lineWidth = 3;
+                  ctx.lineWidth = 5;
           
                   if (yValue) {
                     ctx.beginPath();
@@ -239,11 +239,11 @@ input.addEventListener('change', () => {
                 "horizontalLine": [{
                   "y": 5000,
                   "style": "rgba(255, 0, 0, .4)",
-                  "text": "max"
+                  "text": "maksimalen naklon v desno"
                 }, {
                   "y": -5000,
                   "style": "rgba(255, 0, 0, .4)",
-                  "text": "min"
+                  "text": "minimalen naklon v desno"
                 }]
               }
             };
