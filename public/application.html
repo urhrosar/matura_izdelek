@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Pametna analiza smucarskih skokov</title>
+
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <link href="vendors/plyr/plyr.css" rel="stylesheet">
+    <link href="assets/css/theme.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+
+</head>
+
+<body>
+
+    <main id="top">
+
+        <nav class="navbar navbar-expand-lg fixed-top py-3 backdrop" data-navbar-on-scroll="data-navbar-on-scroll">
+            <div class="container"><a class="navbar-brand d-flex align-items-center fw-bold fs-2" href="index.html">
+                    <img class="d-inline-block align-top img-fluid" src="Photos/logo.png" alt="" width="250" /></a>
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation"><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse border-lg-0 mt-4 mt-lg-0" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto pt-2 pt-lg-0">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                    </ul>
+                    <a class="btn btn-outline-primary" href="application.html" role="button">Application</a>
+                </div>
+            </div>
+        </nav>
+        <div class="main">
+            <!--start upload--------------------------------------------------------------------------------------------------------------->
+
+            <!-- <script>
+                $(document).ready(function(){
+                    $("#hide").click(function(){
+                        $("#grafi").hide();
+                    });
+                });
+            </script> -->
+
+
+            <script>
+
+            function showStuff(id, text) {
+                document.getElementById(id).style.display = 'block';
+
+                document.getElementById(text).style.display = 'block';
+
+                }
+
+            </script>
+
+            <div class="upload">
+                <div class="upload-files">
+                    <header>
+                        <p>
+                            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                            <span class="up">up</span>
+                            <span class="load">load</span>
+                        </p>
+                    </header>
+                    <div class="body" id="drop">
+                        <i class="fa fa-file-text-o pointer-none" aria-hidden="true"></i>
+                        <p class="pointer-none"><b>Drag and drop</b> files here <br /> or <a href=""
+                                id="triggerFile" onclick="showStuff('grafi', 'arrow');">browse</a> to begin the upload</p>
+                        <input type="file" multiple="multiple" id="uploadFile" name="load_data" />
+                    </div>
+                    <footer>
+                        <div class="divider">
+                            <span>
+                                <AR>FILES</AR>
+                            </span>
+                        </div>
+                        <div class="list-files">
+                        </div>
+                        <button class="importar" onClick="window.location.reload();">UPDATE FILES</button>
+                    </footer>
+                </div>
+            </div>
+
+            <div id="arrow" style="display: none;">
+                <a href="#grafi"><svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="#4db6ac" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
+                </svg></a>
+            </div>
+
+            <script>
+                if(document.getElementById("uploadFile").files.length == 0 ){
+                    console.log("no files selected");
+                }
+            </script>
+
+            <!--end upload--------------------------------------------------------------------------------------------------------------->
+
+
+            <!-- <section> begin ============================-->
+
+                
+                
+            <section class="py-0 graph" id="grafi" style="display: none;">
+                <h1 class="display-5 fw-bold">Angle</h1>
+                <button onclick="download()" class="btn btn-sm btn-outline-secondary" style="margin: 5%;">Export graph aspng</button>
+                <script>
+                    function download() {
+                        const imageLink = document.createElement('a');
+                        const canvas = document.getElementById('myChart');
+                        imageLink.download = 'canvas.png';
+                        imageLink.href = canvas.toDataURL('image/png', 1.0);
+                        imageLink.click();
+                    }
+                </script>
+                <canvas id="myChart"></canvas>
+
+                <div hidden>
+                    <p style="margin-top: 3%;">The data are sorted in the following order:</p>
+                    <p>|row| |ax| |ay| |az| |gx| |gy|</p>
+                    <div>
+                        <!--<input type="file">-->
+                        <textarea cols="165" rows="15" style="width: -webkit-fill-available;"></textarea>
+                    </div>
+                </div>
+
+
+                <h1 class="display-5 fw-bold" style="margin-top: 5%;">Acceleration</h1>
+
+
+                <button onclick="secondDownload()" class="btn btn-sm btn-outline-secondary" style="margin: 5%;">Export graph aspng</button>
+                <script>
+                    function secondDownload() {
+                        const imageLink = document.createElement('b');
+                        const canvas = document.getElementById('myChart2');
+                        imageLink.download = 'canvas.png';
+                        imageLink.href = canvas.toDataURL('image/png', 1.0);
+                        imageLink.click();
+                    }
+                </script>
+                <canvas id="myChart2"></canvas>
+
+
+                <h1 class="display-5 fw-bold">Data</h1>
+
+                <div>
+                    <!-- <p style="margin-top: 3%;">The data are sorted in the following order:</p>
+                    <p>|row| |ax| |ay| |az| |gx| |gy|</p>
+                    <div>
+                        <textarea cols="165" rows="15" style="width: -webkit-fill-available;"></textarea>
+                    </div> -->
+
+                    <div class="scroll_table">
+                        <table id="customers">
+
+                        </table>
+                    </div>
+
+                   
+                </div>
+
+            </section>
+        </div>
+
+        <script>
+            //funkcija za izdelavo tabele
+
+            // (A) GET HTML FILE PICKER & TABLE
+            let picker = document.getElementById("uploadFile"),
+                table = document.getElementById("customers");
+            
+            // (B) ON SELECTING CSV FILE
+            picker.onchange = () => {
+            // (B1) REMOVE OLD TABLE ROWS
+            table.innerHTML = "<tr><th>index</th><th>ax</th><th>ay</th><th>az</th><th>gx</th><th>gy</th></tr>";
+            
+            // (B2) READ CSV & GENERATE TABLE
+            let reader = new FileReader();
+            reader.addEventListener("loadend", () => {
+                let csv = reader.result.split("\r\n");
+                for (let row of csv) {
+                let tr = table.insertRow();
+                for (let col of row.split(";")) {
+                    let td = tr.insertCell();
+                    td.innerHTML = col;
+                }
+                }
+            });
+            reader.readAsText(picker.files[0]);
+            };
+            </script>
+
+    </main>
+
+    <script src="vendors/@popperjs/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
+    <script src="vendors/plyr/plyr.polyfilled.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="assets/js/theme.js"></script>
+
+    <script src="script.js"></script>
+
+    <script src="upload.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&amp;display=swap"
+        rel="stylesheet">
+</body>
+
+</html>
