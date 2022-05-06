@@ -57,9 +57,11 @@ App.init = (function () {
 		evt.preventDefault();
 	};
 	$("#drop").ondrop = (evt) => {
-		$("input[type=file]").files = evt.dataTransfer.files;
+		showStuff('grafi', 'arrow');
+		// $("input[type=file]").files = evt.dataTransfer.files;
 		$("footer").classList.add("hasFiles");
 		$("#drop").classList.remove("active");
+		$("input[type=file]").click();
 		evt.preventDefault();
 	};
 

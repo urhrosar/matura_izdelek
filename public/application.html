@@ -58,19 +58,10 @@
             </div>
         </nav>
         <div class="main">
-            <!--start upload--------------------------------------------------------------------------------------------------------------->
-
-            <!-- <script>
-                $(document).ready(function(){
-                    $("#hide").click(function(){
-                        $("#grafi").hide();
-                    });
-                });
-            </script> -->
-
 
             <script>
 
+            //funkcija za prikaz grafov in podatkov
             function showStuff(id, text) {
                 document.getElementById(id).style.display = 'block';
 
@@ -80,6 +71,8 @@
 
             </script>
 
+
+<!---upload-------------------------------------------------------------------------------------------------------->
             <div class="upload">
                 <div class="upload-files">
                     <header>
@@ -91,9 +84,13 @@
                     </header>
                     <div class="body" id="drop">
                         <i class="fa fa-file-text-o pointer-none" aria-hidden="true"></i>
-                        <p class="pointer-none"><b>Drag and drop</b> files here <br /> or <a href=""
-                                id="triggerFile" onclick="showStuff('grafi', 'arrow');">browse</a> to begin the upload</p>
-                        <input type="file" multiple="multiple" id="uploadFile" name="load_data" />
+                        <!-- <p class="pointer-none"><b>Drag and drop</b> files here <br /> or <a href=""
+                                id="triggerFile" onclick="showStuff('grafi', 'arrow');">browse</a> to begin the upload</p> -->
+                            <p class="pointer-none">
+                                <button type="button" class="btn btn-secondary" id="triggerFile" onclick="showStuff('grafi', 'arrow');" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                    Browse
+                                  </button> to begin the upload (only .txt file)</p>
+                        <input type="file" accept=".txt" id="uploadFile" name="load_data"/>
                     </div>
                     <footer>
                         <div class="divider">
@@ -113,78 +110,55 @@
                     <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V4.5z"/>
                 </svg></a>
             </div>
-
-            <script>
-                if(document.getElementById("uploadFile").files.length == 0 ){
-                    console.log("no files selected");
-                }
-            </script>
-
-            <!--end upload--------------------------------------------------------------------------------------------------------------->
-
-
-            <!-- <section> begin ============================-->
-
-                
-                
+            
+            
+<!---Grafi-------------------------------------------------------------------------------------------------------->    
             <section class="py-0 graph" id="grafi" style="display: none;">
                 <h1 class="display-5 fw-bold">Angle</h1>
-                <button onclick="download()" class="btn btn-sm btn-outline-secondary" style="margin: 5%;">Export graph aspng</button>
+                <button onclick="download()" class="btn btn-sm btn-outline-secondary" style="margin: 5%;">Export graph as png</button>
                 <script>
                     function download() {
                         const imageLink = document.createElement('a');
                         const canvas = document.getElementById('myChart');
-                        imageLink.download = 'canvas.png';
+                        imageLink.download = 'angle.png';
                         imageLink.href = canvas.toDataURL('image/png', 1.0);
                         imageLink.click();
                     }
                 </script>
                 <canvas id="myChart"></canvas>
-
                 <div hidden>
-                    <p style="margin-top: 3%;">The data are sorted in the following order:</p>
-                    <p>|row| |ax| |ay| |az| |gx| |gy|</p>
                     <div>
-                        <!--<input type="file">-->
                         <textarea cols="165" rows="15" style="width: -webkit-fill-available;"></textarea>
                     </div>
                 </div>
 
 
                 <h1 class="display-5 fw-bold" style="margin-top: 5%;">Acceleration</h1>
-
-
-                <button onclick="secondDownload()" class="btn btn-sm btn-outline-secondary" style="margin: 5%;">Export graph aspng</button>
+                <button onclick="secondDownload()" class="btn btn-sm btn-outline-secondary" style="margin: 5%;">Export graph as png</button>
                 <script>
                     function secondDownload() {
-                        const imageLink = document.createElement('b');
+                        const imageLink = document.createElement('a');
                         const canvas = document.getElementById('myChart2');
-                        imageLink.download = 'canvas.png';
+                        imageLink.download = 'acceleration.png';
                         imageLink.href = canvas.toDataURL('image/png', 1.0);
                         imageLink.click();
                     }
                 </script>
                 <canvas id="myChart2"></canvas>
+                <div hidden>
+                    <div>
+                        <textarea cols="165" rows="15" style="width: -webkit-fill-available;"></textarea>
+                    </div>
+                </div>
 
 
                 <h1 class="display-5 fw-bold">Data</h1>
 
                 <div>
-                    <!-- <p style="margin-top: 3%;">The data are sorted in the following order:</p>
-                    <p>|row| |ax| |ay| |az| |gx| |gy|</p>
-                    <div>
-                        <textarea cols="165" rows="15" style="width: -webkit-fill-available;"></textarea>
-                    </div> -->
-
-                    <div class="scroll_table">
-                        <table id="customers">
-
-                        </table>
+                   <div class="scroll_table">
+                        <table id="customers"></table>
                     </div>
-
-                   
                 </div>
-
             </section>
         </div>
 
