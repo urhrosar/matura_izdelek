@@ -59,21 +59,8 @@
         </nav>
         <div class="main">
 
-            <script>
-
-            //funkcija za prikaz grafov in podatkov
-            function showStuff(id, text) {
-                document.getElementById(id).style.display = 'block';
-
-                document.getElementById(text).style.display = 'block';
-
-                }
-
-            </script>
-
-
 <!---upload-------------------------------------------------------------------------------------------------------->
-            <div class="upload">
+            <!-- <div class="upload">
                 <div class="upload-files">
                     <header>
                         <p>
@@ -83,10 +70,10 @@
                         </p>
                     </header>
                     <div class="body" id="drop">
-                        <i class="fa fa-file-text-o pointer-none" aria-hidden="true"></i>
+                        <i class="fa fa-file-text-o pointer-none" aria-hidden="true"></i> -->
                         <!-- <p class="pointer-none"><b>Drag and drop</b> files here <br /> or <a href=""
                                 id="triggerFile" onclick="showStuff('grafi', 'arrow');">browse</a> to begin the upload</p> -->
-                            <p class="pointer-none">
+                            <!-- <p class="pointer-none">
                                 <button type="button" class="btn btn-secondary" id="triggerFile" onclick="showStuff('grafi', 'arrow');" data-toggle="button" aria-pressed="false" autocomplete="off">
                                     Browse
                                   </button> to begin the upload (only .txt file)</p>
@@ -103,7 +90,47 @@
                         <button class="importar" onClick="window.location.reload();">UPDATE FILES</button>
                     </footer>
                 </div>
+            </div> -->
+
+            <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+            <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+            <script src="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone-min.js"></script>
+            <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
+
+
+
+
+            <div class="upload">
+                <div class="upload-files">
+                    <header>
+                        <p>
+                            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                            <span class="up">up</span>
+                            <span class="load">load</span>
+                        </p>
+                    </header>
+                    <label for="uploadFile" style="margin-top: 10px; font-family: var(--bs-body-font-family); margin-left: 20%;">Choose a file or drag and drop:</label>
+                    <input type="file" accept=".txt" class="dropzone" id="uploadFile" style="min-height: 300px;
+                    border: 3px dashed #4db6ac;
+                    border-radius: 5px;
+                    padding: 20px 20px;
+                    box-sizing: border-box;
+                    background: #fff;
+                    width: 100%;" name="load_data" formaction="/target" style="width: -webkit-fill-available;"/>
+
+                    
+                        <!-- <input type="file" accept=".txt" class="dropzone" id="uploadFile" name="load_data" formaction="/target" style="width: -webkit-fill-available;"/> -->
+                </div>
             </div>
+            
+
+
+
+
+
+            <!-- <input type="file" accept=".txt" class="dropzone" id="uploadFile" name="load_data" formaction="/target"/> -->
+
 
             <div id="arrow" style="display: none;">
                 <a href="#grafi"><svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="#4db6ac" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
@@ -169,8 +196,13 @@
             let picker = document.getElementById("uploadFile"),
                 table = document.getElementById("customers");
             
-            // (B) ON SELECTING CSV FILE
+            // (B) ON SELECTING CSV FILE -> ONCHANGE za input, ko uplodamo file, se prikazejo grafi + tabela
             picker.onchange = () => {
+                
+                document.getElementById("grafi").style.display = 'block';
+
+                document.getElementById("arrow").style.display = 'block';
+
             // (B1) REMOVE OLD TABLE ROWS
             table.innerHTML = "<tr><th>index</th><th>ax</th><th>ay</th><th>az</th><th>gx</th><th>gy</th></tr>";
             
