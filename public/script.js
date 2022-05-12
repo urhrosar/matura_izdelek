@@ -149,14 +149,14 @@ input.addEventListener('change', () => {
         const data = {
             labels: ax[0],
             datasets: [{
-                label: 'ax',
+                label: 'gx',
                 data: ax[1],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             },
             {
-                label: 'ay',
+                label: 'gy',
                 data: ax[2],
                 fill: false,
                 borderColor: 'rgb(75, 76, 192)',
@@ -389,14 +389,14 @@ input.addEventListener('change', () => {
         const data = {
             labels: ax[0],
             datasets: [{
-                label: 'gx',
+                label: 'ax',
                 data: ax[1],
                 fill: false,
                 borderColor: 'rgb(75, 192, 192)',
                 tension: 0.1
             },
             {
-                label: 'gy',
+                label: 'ay',
                 data: ax[2],
                 fill: false,
                 borderColor: 'rgb(75, 76, 192)',
