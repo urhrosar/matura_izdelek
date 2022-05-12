@@ -243,7 +243,7 @@ input.addEventListener('change', () => {
                 }, {
                   "y": -5000,
                   "style": "rgba(255, 0, 0, .4)",
-                  "text": "minimalen naklon v desno"
+                  "text": "minimalen naklon v levo"
                 }]
               }
             };
